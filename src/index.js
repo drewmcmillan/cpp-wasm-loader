@@ -51,10 +51,12 @@ export default async function loader(content) {
 
   try {
     const options = loadOptions(this);
+    
+    const wasmBuildName = createBuildWasmName(this.resourcePath, content);
 
-    const inputFile = `input${path.extname(this.resourcePath)}`;
-    const indexFile = 'index.js';
-    const wasmFile = 'index.wasm';
+    var inputFile = `input${path.extname(this.resourcePath)}`;
+    var indexFile = wasmBuildName.replace('.wasm', '.js');
+    var wasmFile = wasmBuildName;
 
     options.emccFlags = [inputFile, '-s', 'WASM=1', ...options.emccFlags, '-o', indexFile];
 
@@ -71,7 +73,6 @@ export default async function loader(content) {
     const indexContent = await readFile(path.join(folder, indexFile), 'utf8');
     const wasmContent = await readFile(path.join(folder, wasmFile));
 
-    const wasmBuildName = createBuildWasmName(this.resourcePath, content);
     this.emitFile(wasmBuildName, wasmContent);
 
     const module = buildModule(wasmBuildName, indexContent);
