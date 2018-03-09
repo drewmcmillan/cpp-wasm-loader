@@ -27,7 +27,7 @@ module.exports = {
             buildPath: 'build',
             emccPath: 'path-to-emcc',
             emccFlags: ['-O3'],
-            wasmName: `fileName.wasm`
+            wasmName: 'fileName.wasm'
           }
         }
       }
