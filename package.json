@@ -19,7 +19,7 @@
   "scripts": {
     "webpack-defaults": "webpack-defaults",
     "start": "npm run build -- -w",
-    "build": "cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
+    "build": "echo 'testinggg' && cross-env NODE_ENV=production babel src -d dist --ignore 'src/**/*.test.js'",
     "clean": "del-cli dist",
     "lint": "eslint --cache src test",
     "prepublish": "npm run build",
@@ -61,7 +61,7 @@
     "node": ">= 4.3 < 5.0.0 || >= 5.10"
   },
   "peerDependencies": {
-    "webpack": "^2.0.0 || ^3.0.0"
+    "webpack": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "browser": {
     "fs": false
