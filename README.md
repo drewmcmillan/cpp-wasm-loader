@@ -26,7 +26,8 @@ module.exports = {
             // Path to your 'build' or 'dist' directory relative to project root
             buildPath: 'build',
             emccPath: 'path-to-emcc',
-            emccFlags: ['-O3']
+            emccFlags: ['-O3'],
+            wasmName: `fileName.wasm`
           }
         }
       }
