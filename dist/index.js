@@ -53,7 +53,8 @@ function buildModule(wasmName, indexContent) {
             })(${JSON.stringify(Module)})`;
 }
 
-function createBuildWasmName(resource, content) {
+function createBuildWasmName(resource, content, wasmName) {
+  if (wasmName) return wasmName;
   var fileName = path.basename(resource, path.extname(resource));
   return `${fileName}-${md5(content)}.wasm`;
 }
@@ -65,7 +66,7 @@ exports.default = async function loader(content) {
   try {
     var options = (0, _options.loadOptions)(this);
 
-    var wasmBuildName = createBuildWasmName(this.resourcePath, content);
+    var wasmBuildName = createBuildWasmName(this.resourcePath, content, options.wasmName);
 
     var inputFile = `input${path.extname(this.resourcePath)}`;
     var indexFile = wasmBuildName.replace('.wasm', '.js');
